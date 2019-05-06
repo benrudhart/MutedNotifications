@@ -32,9 +32,8 @@ final class AudioRecorder {
         }
     }
 
-
     func commonInit() {
-        setupNotifications()
+//        setupNotifications()
 
         do {
             try session.setCategory(.playAndRecord,

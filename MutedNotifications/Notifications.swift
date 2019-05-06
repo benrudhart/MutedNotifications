@@ -45,7 +45,6 @@ final class Notifications: NSObject {
         content.sound = .defaultCriticalSound(withAudioVolume: 1)
         return content
     }
-
 }
 
 extension Notifications: UNUserNotificationCenterDelegate {
