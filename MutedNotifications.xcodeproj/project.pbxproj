@@ -26,6 +26,7 @@
 		B535CF9C228014CD00B117AF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B535CFA222801B0E00B117AF /* AudioRecorder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioRecorder.swift; sourceTree = "<group>"; };
 		B535CFA422801EB000B117AF /* Notifications.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Notifications.swift; sourceTree = "<group>"; };
+		B535CFA62280215800B117AF /* MutedNotifications.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MutedNotifications.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +59,7 @@
 		B535CF8F228014CB00B117AF /* MutedNotifications */ = {
 			isa = PBXGroup;
 			children = (
+				B535CFA62280215800B117AF /* MutedNotifications.entitlements */,
 				B535CF90228014CB00B117AF /* AppDelegate.swift */,
 				B535CF92228014CB00B117AF /* ViewController.swift */,
 				B535CFA222801B0E00B117AF /* AudioRecorder.swift */,
@@ -102,6 +104,14 @@
 				TargetAttributes = {
 					B535CF8C228014CB00B117AF = {
 						CreatedOnToolsVersion = 10.2.1;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -290,6 +300,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = MutedNotifications/MutedNotifications.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = ZRTM7GATT7;
 				INFOPLIST_FILE = MutedNotifications/Info.plist;
@@ -308,6 +319,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = MutedNotifications/MutedNotifications.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = ZRTM7GATT7;
 				INFOPLIST_FILE = MutedNotifications/Info.plist;

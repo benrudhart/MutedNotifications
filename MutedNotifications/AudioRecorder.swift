@@ -20,7 +20,16 @@ final class AudioRecorder {
     }
 
     private init() {
-        commonInit()
+        requestPermission() {
+            self.commonInit()
+        }
+    }
+
+    private func requestPermission(completion: @escaping (() -> Void)) {
+        AVAudioSession.sharedInstance().requestRecordPermission { granted in
+            assert(granted, "this example required mic permission")
+            completion()
+        }
     }
 
 
@@ -33,7 +42,6 @@ final class AudioRecorder {
                                     options: [.allowBluetooth, .duckOthers, .defaultToSpeaker])
             try session.setPreferredSampleRate(16000)
             try session.setPreferredIOBufferDuration(0.0058)
-            try session.setPreferredInputNumberOfChannels(1)
         } catch {
             fatalError(error.localizedDescription)
         }
@@ -51,19 +59,20 @@ final class AudioRecorder {
         guard let userInfo = notification.userInfo,
             let typeValue = userInfo[AVAudioSessionInterruptionTypeKey] as? UInt,
             let interruptionType = AVAudioSession.InterruptionType(rawValue: typeValue) else {
-                return
+                fatalError()
         }
 
         switch interruptionType {
         case .began:
             isRecording = false
         case .ended:
-            // interruption ended
-            guard let optionsValue = userInfo[AVAudioSessionInterruptionOptionKey] as? UInt else { return }
-            let options = AVAudioSession.InterruptionOptions(rawValue: optionsValue)
+            if let interruptionValue = userInfo[AVAudioSessionInterruptionOptionKey] as? UInt {
+                let interruptionOptions = AVAudioSession.InterruptionOptions(rawValue: interruptionValue)
+                let shouldResume = interruptionOptions.contains(.shouldResume)
 
-            if options.contains(.shouldResume) {
-                isRecording = true
+                if shouldResume {
+                    isRecording = true
+                }
             }
         @unknown default:
             fatalError("unkown interruption type")
