@@ -31,7 +31,11 @@ class ViewController: UIViewController {
     }
 
     @IBAction func toggleAudioRecording(_ sender: UISwitch) {
-        recordingLabel.text = sender.isOn
+        let isRecording = sender.isOn
+
+        AudioRecorder.shared.isRecording = isRecording
+
+        recordingLabel.text = isRecording
             ? "Audio recording enabled"
             : "Audio recording disabled"
     }

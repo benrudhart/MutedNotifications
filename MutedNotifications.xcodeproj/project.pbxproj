@@ -12,6 +12,7 @@
 		B535CF96228014CB00B117AF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B535CF94228014CB00B117AF /* Main.storyboard */; };
 		B535CF98228014CD00B117AF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B535CF97228014CD00B117AF /* Assets.xcassets */; };
 		B535CF9B228014CD00B117AF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B535CF99228014CD00B117AF /* LaunchScreen.storyboard */; };
+		B535CFA322801B0E00B117AF /* AudioRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B535CFA222801B0E00B117AF /* AudioRecorder.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +23,7 @@
 		B535CF97228014CD00B117AF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B535CF9A228014CD00B117AF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B535CF9C228014CD00B117AF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B535CFA222801B0E00B117AF /* AudioRecorder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioRecorder.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +58,7 @@
 			children = (
 				B535CF90228014CB00B117AF /* AppDelegate.swift */,
 				B535CF92228014CB00B117AF /* ViewController.swift */,
+				B535CFA222801B0E00B117AF /* AudioRecorder.swift */,
 				B535CF94228014CB00B117AF /* Main.storyboard */,
 				B535CF97228014CD00B117AF /* Assets.xcassets */,
 				B535CF99228014CD00B117AF /* LaunchScreen.storyboard */,
@@ -135,6 +138,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B535CFA322801B0E00B117AF /* AudioRecorder.swift in Sources */,
 				B535CF93228014CB00B117AF /* ViewController.swift in Sources */,
 				B535CF91228014CB00B117AF /* AppDelegate.swift in Sources */,
 			);
