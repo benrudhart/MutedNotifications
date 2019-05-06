@@ -41,6 +41,7 @@ class ViewController: UIViewController {
     }
 
     @IBAction func scheduleNotification(_ sender: Any) {
+        Notifications.shared.scheduleNotification(in: seconds)
     }
 }
 
