@@ -19,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="alm-pO-HnP">
-                                <rect key="frame" x="16" y="311.5" width="382" height="283"/>
+                                <rect key="frame" x="16" y="309" width="382" height="288.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Schedule a local notification" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1zY-66-pJV">
                                         <rect key="frame" x="79" y="0.0" width="224.5" height="20.5"/>
@@ -51,16 +51,27 @@
                                         </connections>
                                     </slider>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="tvT-Ta-Kqe">
-                                        <rect key="frame" x="61.5" y="161" width="259.5" height="31"/>
+                                        <rect key="frame" x="61.5" y="161" width="259.5" height="36.5"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enable audio recording:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BKE-el-ybX">
-                                                <rect key="frame" x="0.0" y="0.0" width="180.5" height="31"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Qkb-I7-PUS">
+                                                <rect key="frame" x="0.0" y="0.0" width="180.5" height="36.5"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" text="Enable audio recording:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BKE-el-ybX">
+                                                        <rect key="frame" x="0.0" y="0.0" width="180.5" height="20.5"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" text="Notifications are muted" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sY5-2H-ni6">
+                                                        <rect key="frame" x="0.0" y="20.5" width="180.5" height="16"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                            </stackView>
                                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="J2v-Uw-lJU">
-                                                <rect key="frame" x="210.5" y="0.0" width="51" height="31"/>
+                                                <rect key="frame" x="210.5" y="0.0" width="51" height="36.5"/>
                                                 <connections>
                                                     <action selector="toggleAudioRecording:" destination="BYZ-38-t0r" eventType="valueChanged" id="DQk-Qr-FBB"/>
                                                 </connections>
@@ -68,14 +79,14 @@
                                         </subviews>
                                     </stackView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Sho-tF-awC" userLabel="separator">
-                                        <rect key="frame" x="0.0" y="222" width="382" height="1"/>
+                                        <rect key="frame" x="0.0" y="227.5" width="382" height="1"/>
                                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="1" id="JA7-uN-gat"/>
                                         </constraints>
                                     </view>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FxB-ut-aYX">
-                                        <rect key="frame" x="117.5" y="253" width="147" height="30"/>
+                                        <rect key="frame" x="117.5" y="258.5" width="147" height="30"/>
                                         <state key="normal" title="Schedule Notification"/>
                                         <connections>
                                             <action selector="scheduleNotification:" destination="BYZ-38-t0r" eventType="touchUpInside" id="X9d-yd-0Nw"/>
@@ -97,6 +108,7 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
+                        <outlet property="notificationsLabel" destination="sY5-2H-ni6" id="7Ox-NG-BaR"/>
                         <outlet property="recordingLabel" destination="BKE-el-ybX" id="maJ-CP-BFd"/>
                         <outlet property="recordingSwitch" destination="J2v-Uw-lJU" id="lsx-A7-NrS"/>
                         <outlet property="secondsLabel" destination="DB3-VV-oj6" id="2qg-hw-fsN"/>

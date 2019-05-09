@@ -9,10 +9,11 @@
 import UIKit
 
 class ViewController: UIViewController {
-    @IBOutlet var secondsLabel: UILabel!
-    @IBOutlet var recordingLabel: UILabel!
-    @IBOutlet var slider: UISlider!
-    @IBOutlet var recordingSwitch: UISwitch!
+    @IBOutlet private var secondsLabel: UILabel!
+    @IBOutlet private var recordingLabel: UILabel!
+    @IBOutlet private var notificationsLabel: UILabel!
+    @IBOutlet private var slider: UISlider!
+    @IBOutlet private var recordingSwitch: UISwitch!
 
     private var seconds: Int = 0 {
         didSet { secondsLabel.text = "\(seconds)" }
@@ -34,10 +35,14 @@ class ViewController: UIViewController {
         let isRecording = sender.isOn
 
         AudioRecorder.shared.isRecording = isRecording
-
+        
         recordingLabel.text = isRecording
             ? "Audio recording enabled"
             : "Audio recording disabled"
+        
+        notificationsLabel.text = isRecording
+            ? "Notifications are muted"
+            : "Notifications are not muted"
     }
 
     @IBAction func scheduleNotification(_ sender: Any) {
