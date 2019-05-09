@@ -64,8 +64,6 @@ final class AudioRecorder {
             fatalError("unkown interruption type")
         }
     }
-    
-    
 }
 
 private extension Notification {

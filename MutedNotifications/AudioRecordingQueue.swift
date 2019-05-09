@@ -73,11 +73,11 @@ final class AudioRecordingQueue {
         return { userData, queue, bufferRef, _, _, _ in
             guard let userData = userData else { return }
             let recordingQueue = Unmanaged<AudioRecordingQueue>.fromOpaque(userData).takeUnretainedValue()
-            recordingQueue.handle(queue: queue, bufferRef: bufferRef)
+            recordingQueue.enqueueData(queue: queue, bufferRef: bufferRef)
         }
     }
     
-    private func handle(queue: AudioQueueRef, bufferRef: AudioQueueBufferRef) {
+    private func enqueueData(queue: AudioQueueRef, bufferRef: AudioQueueBufferRef) {
         if let input = input {
             let pcm = bufferRef.pointee.mAudioData.assumingMemoryBound(to: Int16.self)
             input(pcm)
