@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  AudioRecorder.swift
 //  MutedNotifications
 //
 //  Created by Ben Rudhart on 06.05.19.
@@ -10,71 +10,76 @@ import UIKit
 import AVFoundation
 
 final class AudioRecorder {
-    private let session = AVAudioSession.sharedInstance()
     static let shared = AudioRecorder()
+    private let session = AVAudioSession.sharedInstance()
+    private let recordingQueue = AudioRecordingQueue()
 
     var isRecording: Bool = false {
-        didSet {
-            try! session.setActive(isRecording, options: .notifyOthersOnDeactivation)
-        }
+        didSet { recordingQueue.setRecording(isRecording) }
     }
 
     private init() {
+        registerNotifications()
+        
         requestPermission() {
-            self.commonInit()
+            self.setupSession()
+            self.recordingQueue.setRecording(self.isRecording)
         }
     }
 
     private func requestPermission(completion: @escaping (() -> Void)) {
         AVAudioSession.sharedInstance().requestRecordPermission { granted in
-            assert(granted, "this example required mic permission")
+            assert(granted, "this example requires mic permission")
             completion()
         }
     }
 
-    func commonInit() {
-//        setupNotifications()
-
+    func setupSession() {
         do {
-            try session.setCategory(.playAndRecord,
-                                    mode: .default,
-                                    options: [.allowBluetooth, .duckOthers, .defaultToSpeaker])
+            try session.setCategory(.playAndRecord, mode: .default, options: [.allowBluetooth, .duckOthers, .defaultToSpeaker])
             try session.setPreferredSampleRate(16000)
             try session.setPreferredIOBufferDuration(0.0058)
+            try session.setActive(true, options: .notifyOthersOnDeactivation)
+            try session.setPreferredInputNumberOfChannels(1)
         } catch {
             fatalError(error.localizedDescription)
         }
     }
 
-    func setupNotifications() {
-        let notificationCenter = NotificationCenter.default
-        notificationCenter.addObserver(self,
-                                       selector: #selector(handleInterruption),
-                                       name: AVAudioSession.interruptionNotification,
-                                       object: session)
+    func registerNotifications() {
+        NotificationCenter.default.addObserver(self, selector: #selector(handleInterruption), name: AVAudioSession.interruptionNotification, object: session)
     }
 
     @objc private func handleInterruption(_ notification: Notification) {
-        guard let userInfo = notification.userInfo,
-            let typeValue = userInfo[AVAudioSessionInterruptionTypeKey] as? UInt,
-            let interruptionType = AVAudioSession.InterruptionType(rawValue: typeValue) else {
-                fatalError()
-        }
+        guard let interruptionType = notification.audioInterruptionType else { fatalError() }
 
         switch interruptionType {
         case .began:
             isRecording = false
         case .ended:
-            if let interruptionValue = userInfo[AVAudioSessionInterruptionOptionKey] as? UInt {
-                let interruptionOptions = AVAudioSession.InterruptionOptions(rawValue: interruptionValue)
-                let shouldResume = interruptionOptions.contains(.shouldResume)
-
-                if shouldResume {
-                    isRecording = true
-                }
+            if notification.shouldResumeRecording {
+                isRecording = true
             }
         @unknown default:
             fatalError("unkown interruption type")
         }
+    }
+    
+    
+}
+
+private extension Notification {
+    var audioInterruptionType: AVAudioSession.InterruptionType? {
+        let interruptionValue = userInfo?[AVAudioSessionInterruptionTypeKey] as? UInt
+        return interruptionValue.flatMap { AVAudioSession.InterruptionType(rawValue: $0) }
+    }
+    
+    private var audioInterruptionOptions: AVAudioSession.InterruptionOptions? {
+        let optionValue = userInfo?[AVAudioSessionInterruptionOptionKey] as? UInt
+        return optionValue.map { AVAudioSession.InterruptionOptions(rawValue: $0) }
+    }
+    
+    var shouldResumeRecording: Bool {
+        return audioInterruptionOptions ~= .shouldResume
     }
 }
