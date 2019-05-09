@@ -14,6 +14,7 @@
 		B535CF9B228014CD00B117AF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B535CF99228014CD00B117AF /* LaunchScreen.storyboard */; };
 		B535CFA322801B0E00B117AF /* AudioRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B535CFA222801B0E00B117AF /* AudioRecorder.swift */; };
 		B535CFA522801EB000B117AF /* Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = B535CFA422801EB000B117AF /* Notifications.swift */; };
+		B53D31CD2284847F00EB1CF0 /* AudioRecordingQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53D31CC2284847F00EB1CF0 /* AudioRecordingQueue.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +28,7 @@
 		B535CFA222801B0E00B117AF /* AudioRecorder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioRecorder.swift; sourceTree = "<group>"; };
 		B535CFA422801EB000B117AF /* Notifications.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Notifications.swift; sourceTree = "<group>"; };
 		B535CFA62280215800B117AF /* MutedNotifications.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MutedNotifications.entitlements; sourceTree = "<group>"; };
+		B53D31CC2284847F00EB1CF0 /* AudioRecordingQueue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioRecordingQueue.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +65,7 @@
 				B535CF90228014CB00B117AF /* AppDelegate.swift */,
 				B535CF92228014CB00B117AF /* ViewController.swift */,
 				B535CFA222801B0E00B117AF /* AudioRecorder.swift */,
+				B53D31CC2284847F00EB1CF0 /* AudioRecordingQueue.swift */,
 				B535CFA422801EB000B117AF /* Notifications.swift */,
 				B535CF94228014CB00B117AF /* Main.storyboard */,
 				B535CF97228014CD00B117AF /* Assets.xcassets */,
@@ -153,6 +156,7 @@
 			files = (
 				B535CFA522801EB000B117AF /* Notifications.swift in Sources */,
 				B535CFA322801B0E00B117AF /* AudioRecorder.swift in Sources */,
+				B53D31CD2284847F00EB1CF0 /* AudioRecordingQueue.swift in Sources */,
 				B535CF93228014CB00B117AF /* ViewController.swift in Sources */,
 				B535CF91228014CB00B117AF /* AppDelegate.swift in Sources */,
 			);
